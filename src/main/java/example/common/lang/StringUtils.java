@@ -1,4 +1,6 @@
-package example.common.concurrent;
+package example.common.lang;
+
+import java.util.Iterator;
 
 /*                          __    _                     
  *                         |  |  |_|___ ___ ___ ___ ___ 
@@ -33,28 +35,27 @@ package example.common.concurrent;
  *                                                       (BSD 2-Clause License)
  */
 
-import java.util.Collection;
-import java.util.HashSet;
-import java.util.concurrent.ConcurrentHashMap;
+public class StringUtils {
 
-/**
- * A lock free implementation inspired by {@link HashSet} implementation
- * 
- * TODO benchmark against {@link ConcurrentIdentityMap}
- */
-public class ConcurrentHashSet<E> {
-	private final ConcurrentHashMap<E, Object> map;
-	private static final Object PRESENT = new Object();
-
-	public ConcurrentHashSet() {
-		map = new ConcurrentHashMap<>();
+	public static String toString(Iterable<?> it) {
+		return join(it, "");
 	}
 
-	public boolean add(E e) {
-		return map.put(e, PRESENT) == null;
+	public static String join(Iterable<?> it, CharSequence separator) {
+		if (it == null)
+			return null;
+		return join(it.iterator(), separator);
 	}
 
-	public Collection<E> getElements() {
-		return map.keySet();
+	public static String join(Iterator<?> it, CharSequence separator) {
+		if (it == null)
+			return null;
+		if (!it.hasNext())
+			return "";
+		StringBuilder sb = new StringBuilder();
+		sb.append(it.next());
+		while (it.hasNext())
+			sb.append(separator).append(it.next());
+		return sb.toString();
 	}
 }

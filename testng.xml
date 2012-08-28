@@ -7,4 +7,9 @@
 			<package name="example.common.concurrent" />
 		</packages>
 	</test>
+	<test name="lang">
+		<packages>
+			<package name="example.common.lang" />
+		</packages>
+	</test>
 </suite>
