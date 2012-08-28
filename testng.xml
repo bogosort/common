@@ -12,4 +12,9 @@
 			<package name="example.common.lang" />
 		</packages>
 	</test>
+	<test name="util">
+		<packages>
+			<package name="example.common.util" />
+		</packages>
+	</test>
 </suite>
