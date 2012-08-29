@@ -1,7 +1,3 @@
-package example.common.lang;
-
-import java.util.Iterator;
-
 /*                          __    _                     
  *                         |  |  |_|___ ___ ___ ___ ___ 
  *                         |  |__| |  _| -_|   |_ -| -_|
@@ -34,6 +30,10 @@ import java.util.Iterator;
  * -----------------------------------------------------------------------------
  *                                                       (BSD 2-Clause License)
  */
+
+package example.common.lang;
+
+import java.util.Iterator;
 
 public class StringUtils {
 

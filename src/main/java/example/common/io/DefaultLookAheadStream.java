@@ -31,32 +31,90 @@
  *                                                       (BSD 2-Clause License)
  */
 
-package example.common.concurrent;
+package example.common.io;
 
-import java.util.Collection;
-import java.util.HashSet;
-import java.util.concurrent.ConcurrentHashMap;
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
 
 /**
- * A lock free implementation inspired by {@link HashSet} implementation
- * 
- * TODO benchmark against {@link ConcurrentIdentityMap}
+ * A canonical implementation of {@code LookAheadStream<T>} wrapping a
+ * {@link SimpleInputStream}.
  * 
  * @author mm
  */
-public class ConcurrentHashSet<E> {
-	private final ConcurrentHashMap<E, Object> map;
-	private static final Object PRESENT = new Object();
+public class DefaultLookAheadStream<T> implements LookAheadStream<T> {
+	private final SimpleInputStream<T> input;
+	private final LinkedList<T> buffer;
 
-	public ConcurrentHashSet() {
-		map = new ConcurrentHashMap<>();
+	public DefaultLookAheadStream(SimpleInputStream<T> input) {
+		this.input = input;
+		this.buffer = new LinkedList<T>();
 	}
 
-	public boolean add(E e) {
-		return map.put(e, PRESENT) == null;
+	/*
+	 * Fill the buffer until {@code position} or the end of the stream is
+	 * reached.
+	 */
+	private void fillBuffer(int position) throws StreamIOException {
+		int n = position - buffer.size() + 1;
+		for (int i = 0; i < n && input.hasNext(); i++)
+			buffer.offerLast(input.next());
 	}
 
-	public Collection<E> getElements() {
-		return map.keySet();
+	@Override
+	public T peek() throws StreamIOException {
+		return peek(0);
+	}
+
+	@Override
+	public T peek(int position) throws StreamIOException {
+		fillBuffer(position);
+
+		if (buffer.size() < position + 1)
+			return null;
+
+		return buffer.get(position);
+	}
+
+	@Override
+	public List<T> next(int n) throws StreamIOException {
+		List<T> result = new ArrayList<T>(n);
+		// remove from buffer
+		while (n >= 0 && buffer.size() > 0) {
+			result.add(buffer.pollLast());
+			n--;
+		}
+		// remove from input
+		while (n >= 0 && input.hasNext()) {
+			result.add(input.next());
+			n--;
+		}
+		if (n >= 0)
+			return null;
+		return result;
+	}
+
+	@Override
+	public boolean hasNext(int n) throws StreamIOException {
+		fillBuffer(n);
+		return buffer.size() > n;
+	}
+
+	@Override
+	public T next() throws StreamIOException {
+		if (buffer.size() > 0)
+			return buffer.pollLast();
+		return input.next();
+	}
+
+	@Override
+	public boolean hasNext() throws StreamIOException {
+		return hasNext(0);
+	}
+
+	@Override
+	public String toString() {
+		return "{" + buffer + ", " + input + "}";
 	}
 }

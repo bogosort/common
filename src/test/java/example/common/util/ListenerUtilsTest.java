@@ -1,5 +1,3 @@
-package example.common.util;
-
 /*                          __    _                     
  *                         |  |  |_|___ ___ ___ ___ ___ 
  *                         |  |__| |  _| -_|   |_ -| -_|
@@ -33,6 +31,8 @@ package example.common.util;
  *                                                       (BSD 2-Clause License)
  */
 
+package example.common.util;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -44,7 +44,7 @@ import org.testng.annotations.Test;
 public class ListenerUtilsTest {
 	private Listener<CharSequence> csListener;
 	private List<CharSequence> csListenerResults;
-	
+
 	@BeforeMethod
 	public void beforeTest() {
 		csListenerResults = new ArrayList<>();
@@ -64,7 +64,8 @@ public class ListenerUtilsTest {
 
 	@Test
 	public void buildAdaptor() {
-		Listener<String> strl = ListenerUtils.buildAdaptor(csListener, String.class);
+		Listener<String> strl = ListenerUtils.buildAdaptor(csListener,
+				String.class);
 		strl.newEvent("Test1");
 		strl.newEvent("Test2");
 		Assert.assertEquals(csListenerResults.size(), 2);

@@ -31,32 +31,50 @@
  *                                                       (BSD 2-Clause License)
  */
 
-package example.common.concurrent;
-
-import java.util.Collection;
-import java.util.HashSet;
-import java.util.concurrent.ConcurrentHashMap;
+package example.common.io;
 
 /**
- * A lock free implementation inspired by {@link HashSet} implementation
- * 
- * TODO benchmark against {@link ConcurrentIdentityMap}
+ * A {@link java.io.IOException} implementation for {@link SimpleInputStream}s.
  * 
  * @author mm
+ * 
  */
-public class ConcurrentHashSet<E> {
-	private final ConcurrentHashMap<E, Object> map;
-	private static final Object PRESENT = new Object();
+public class StreamIOException extends Exception {
+	private static final long serialVersionUID = 8312901301587570773L;
 
-	public ConcurrentHashSet() {
-		map = new ConcurrentHashMap<>();
+	/**
+	 * @see Exception#Exception()
+	 */
+	public StreamIOException() {
+		super();
 	}
 
-	public boolean add(E e) {
-		return map.put(e, PRESENT) == null;
+	/**
+	 * @see Exception#Exception(String, Throwable, boolean, boolean)
+	 */
+	public StreamIOException(String message, Throwable cause,
+			boolean enableSuppression, boolean writableStackTrace) {
+		super(message, cause, enableSuppression, writableStackTrace);
 	}
 
-	public Collection<E> getElements() {
-		return map.keySet();
+	/**
+	 * @see Exception#Exception(String, Throwable)
+	 */
+	public StreamIOException(String message, Throwable cause) {
+		super(message, cause);
+	}
+
+	/**
+	 * @see Exception#Exception(String)
+	 */
+	public StreamIOException(String message) {
+		super(message);
+	}
+
+	/**
+	 * @see Exception#Exception(Throwable)
+	 */
+	public StreamIOException(Throwable cause) {
+		super(cause);
 	}
 }

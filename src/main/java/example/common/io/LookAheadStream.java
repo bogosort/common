@@ -31,32 +31,60 @@
  *                                                       (BSD 2-Clause License)
  */
 
-package example.common.concurrent;
+package example.common.io;
 
-import java.util.Collection;
-import java.util.HashSet;
-import java.util.concurrent.ConcurrentHashMap;
+import java.util.List;
 
 /**
- * A lock free implementation inspired by {@link HashSet} implementation
- * 
- * TODO benchmark against {@link ConcurrentIdentityMap}
+ * A {@code SimpleInputStream<T>} capable to deal with <a
+ * href="http://en.wikipedia.org/wiki/Parsing#Lookahead">Lookahead</a>.
  * 
  * @author mm
  */
-public class ConcurrentHashSet<E> {
-	private final ConcurrentHashMap<E, Object> map;
-	private static final Object PRESENT = new Object();
+public interface LookAheadStream<T> extends SimpleInputStream<T> {
 
-	public ConcurrentHashSet() {
-		map = new ConcurrentHashMap<>();
-	}
+	/**
+	 * Returns {@code true} if the stream has {@code n} more elements.
+	 * 
+	 * @param n
+	 *            the number of elements
+	 * @return {@code true} if the stream has {@code n} more elements
+	 * @throws StreamIOException
+	 *             if an I/O error occurs
+	 * 
+	 * @see SimpleInputStream#hasNext()
+	 */
+	boolean hasNext(int n) throws StreamIOException;
 
-	public boolean add(E e) {
-		return map.put(e, PRESENT) == null;
-	}
+	/**
+	 * Retrieves and removes the next {@code n} elements of the stream.
+	 * 
+	 * @param n
+	 *            the number of elements
+	 * @return the next {@code n} element in the stream
+	 * @throws StreamIOException
+	 *             if an I/O error occurs
+	 */
+	List<T> next(int n) throws StreamIOException;
 
-	public Collection<E> getElements() {
-		return map.keySet();
-	}
+	/**
+	 * Retrieves the element at {@code position} of the stream.
+	 * 
+	 * @param position
+	 *            the position of the element
+	 * @return the element at {@code position}
+	 * @throws StreamIOException
+	 *             if an I/O error occurs
+	 */
+	T peek(int position) throws StreamIOException;
+
+	/**
+	 * Retrieves the next element of the stream.
+	 * 
+	 * @return the next element in the stream
+	 * @throws StreamIOException
+	 *             if an I/O error occurs
+	 */
+	T peek() throws StreamIOException;
+
 }

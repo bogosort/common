@@ -7,6 +7,11 @@
 			<package name="example.common.concurrent" />
 		</packages>
 	</test>
+	<test name="io">
+		<packages>
+			<package name="example.common.io" />
+		</packages>
+	</test>
 	<test name="lang">
 		<packages>
 			<package name="example.common.lang" />

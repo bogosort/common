@@ -31,32 +31,39 @@
  *                                                       (BSD 2-Clause License)
  */
 
-package example.common.concurrent;
-
-import java.util.Collection;
-import java.util.HashSet;
-import java.util.concurrent.ConcurrentHashMap;
+package example.common.io;
 
 /**
- * A lock free implementation inspired by {@link HashSet} implementation
- * 
- * TODO benchmark against {@link ConcurrentIdentityMap}
+ * {@code SimpleInputStream} represents the core ideas of InputStreams of
+ * arbitrary types. It can be seen as a simplified generic interface version of
+ * the {@link java.io.InputStream} class. As we (maybe) can not rewind the
+ * stream it is similar to {@link java.util.Iterator} but without its
+ * {@link java.util.Iterator#remove()} method, which is also the reason why
+ * concrete {@code SimpleInputStream}s may not implement the
+ * {@link java.lang.Iterable} interface.
  * 
  * @author mm
+ * 
+ * @param <T>
+ *            the stream element type
  */
-public class ConcurrentHashSet<E> {
-	private final ConcurrentHashMap<E, Object> map;
-	private static final Object PRESENT = new Object();
+public interface SimpleInputStream<T> {
+	/**
+	 * Retrieves and removes the next element of the stream or {@code null} if
+	 * none are present.
+	 * 
+	 * @return the next element in the stream
+	 * @throws StreamIOException
+	 *             if an I/O error occurs
+	 */
+	T next() throws StreamIOException;
 
-	public ConcurrentHashSet() {
-		map = new ConcurrentHashMap<>();
-	}
-
-	public boolean add(E e) {
-		return map.put(e, PRESENT) == null;
-	}
-
-	public Collection<E> getElements() {
-		return map.keySet();
-	}
+	/**
+	 * Returns {@code true} if the stream has more elements.
+	 * 
+	 * @return {@code true} if the stream has more elements
+	 * @throws StreamIOException
+	 *             if an I/O error occurs
+	 */
+	boolean hasNext() throws StreamIOException;
 }

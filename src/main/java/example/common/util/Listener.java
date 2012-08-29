@@ -1,5 +1,3 @@
-package example.common.util;
-
 /*                          __    _                     
  *                         |  |  |_|___ ___ ___ ___ ___ 
  *                         |  |__| |  _| -_|   |_ -| -_|
@@ -32,6 +30,8 @@ package example.common.util;
  * -----------------------------------------------------------------------------
  *                                                       (BSD 2-Clause License)
  */
+
+package example.common.util;
 
 /**
  * @see ListenerUtils

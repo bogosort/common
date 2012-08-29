@@ -1,5 +1,3 @@
-package example.common.concurrent;
-
 /*                          __    _                     
  *                         |  |  |_|___ ___ ___ ___ ___ 
  *                         |  |__| |  _| -_|   |_ -| -_|
@@ -33,6 +31,8 @@ package example.common.concurrent;
  *                                                       (BSD 2-Clause License)
  */
 
+package example.common.concurrent;
+
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
@@ -42,7 +42,11 @@ import java.util.concurrent.locks.ReentrantReadWriteLock;
 /**
  * Similar idea as the <a
  * href="http://www.martinfowler.com/eaaCatalog/identityMap.html">IdentityMap
- * pattern</a> TODO benchmark against {@link ConcurrentHashSet}
+ * pattern</a>
+ * 
+ * TODO benchmark against {@link ConcurrentHashSet}
+ * 
+ * @author mm
  */
 public class ConcurrentIdentityMap<E> {
 	protected final ReentrantReadWriteLock elementsLock = new ReentrantReadWriteLock();
