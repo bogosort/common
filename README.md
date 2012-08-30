@@ -5,7 +5,6 @@ Some common auxiliaries:
 *  concurrent
    *  ConcurrentHashSet: a lock free implementation of java.util.HashSet
    *  ConcurrentIdentityMap: a concurrent implementation of the [IdentityMap](http://www.martinfowler.com/eaaCatalog/identityMap.html "IdentityMap") pattern
-   *  some basic annotations (see [Java Concurrency in Practice](http://www.jcip.net "Java Concurrency in Practice))
 *  io
    *  InputStream implementations
    *  LookAheadStream interface and default implementation

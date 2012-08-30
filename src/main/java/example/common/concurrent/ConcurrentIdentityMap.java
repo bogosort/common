@@ -39,6 +39,8 @@ import java.util.HashSet;
 import java.util.Set;
 import java.util.concurrent.locks.ReentrantReadWriteLock;
 
+import net.jcip.annotations.GuardedBy;
+
 /**
  * Similar idea as the <a
  * href="http://www.martinfowler.com/eaaCatalog/identityMap.html">IdentityMap
