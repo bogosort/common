@@ -37,16 +37,49 @@ import java.util.Iterator;
 
 public class StringUtils {
 
-	public static String toString(Iterable<?> it) {
+	/**
+	 * Returns a string containing the string representations of the elements of
+	 * {@code it} - obtained by {@link String#valueOf(Object)} - without any
+	 * separator between the elements or {@code null} if {@code it==null}.
+	 * 
+	 * @param it
+	 *            the elements to join
+	 * @return a string containing the strings of the elements of {@code it}
+	 */
+	public static String join(Iterable<?> it) {
 		return join(it, "");
 	}
 
+	/**
+	 * Returns a string containing the string representations of the elements of
+	 * {@code it} - obtained by {@link String#valueOf(Object)} with
+	 * {@code separator} between the elements or {@code null} if
+	 * {@code it==null}.
+	 * 
+	 * @param it
+	 *            the elements to join
+	 * @param separator
+	 *            the separator
+	 * @return a string containing the strings of the elements of {@code it}
+	 */
 	public static String join(Iterable<?> it, CharSequence separator) {
 		if (it == null)
 			return null;
 		return join(it.iterator(), separator);
 	}
 
+	/**
+	 * Returns a string containing the string representations of the elements of
+	 * {@code it} - obtained by {@link String#valueOf(Object)} with
+	 * {@code separator} between the elements or {@code null} if
+	 * {@code it==null}.
+	 * 
+	 * @param it
+	 *            the elements to join
+	 * @param separator
+	 *            the separator
+	 * @return a string containing the strings of the elements of {@code it}
+	 */
 	public static String join(Iterator<?> it, CharSequence separator) {
 		if (it == null)
 			return null;
@@ -55,7 +88,7 @@ public class StringUtils {
 		StringBuilder sb = new StringBuilder();
 		sb.append(it.next());
 		while (it.hasNext())
-			sb.append(separator).append(it.next());
+			sb.append(separator).append(String.valueOf(it.next()));
 		return sb.toString();
 	}
 }

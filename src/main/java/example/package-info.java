@@ -31,52 +31,9 @@
  *                                                       (BSD 2-Clause License)
  */
 
-package example.common.util;
+/**
+ * ".example" is a reserved top level domain.
+ *  @see <a href="http://tools.ietf.org/html/rfc2606#section-2">rfc2606</a>
+ */
+package example;
 
-public class ListenerUtils {
-
-	/**
-	 * Cast a {@link Listener} of type <tt>Listener&lt;S&gt;</tt> to a listener
-	 * of type <tt>Listener&lt;T&gt;</tt>. This is possible because Listener
-	 * only uses parameter of type <tt>T</tt> but never returns something of
-	 * type <tt>T</tt> and <tt>T extends S</tt>. So the input parameter can
-	 * always be casted from <tt>S</tt> to <tt>T</tt>.
-	 * 
-	 * @see <a href="http://docs.oracle.com/javase/tutorial/java/generics/erasure.html">Type Erasure</a>
-	 * 
-	 * @param listener
-	 *            the listener to be casted
-	 * @param clazz
-	 *            type parameter for return type
-	 * @return casted listenercast
-	 */
-	@SuppressWarnings("unchecked")
-	public static <S, T extends S> Listener<T> cast(final Listener<S> listener,
-			Class<T> clazz) {
-		// possible due to type erasure of the JVM
-		return (Listener<T>) listener;
-	}
-
-	/**
-	 * This is a fall back implementation of the {@link #cast(Listener, Class)}
-	 * method, because {@link #cast(Listener, Class)} feels like a bloody hack.
-	 * This implementation simply builds an adaptor and guarantees a well typed
-	 * {@link #cast(Listener, Class)} method (NB return types).
-	 * 
-	 * @param listener
-	 *            the listener to be casted
-	 * @param clazz
-	 *            type parameter for return type
-	 * @return casted listener
-	 */
-	public static <S, T extends S> Listener<T> buildAdaptor(
-			final Listener<S> listener, Class<T> clazz) {
-		// build adaptor
-		return new Listener<T>() {
-			@Override
-			public void newEvent(T event) {
-				listener.newEvent(event);
-			}
-		};
-	}
-}

@@ -42,7 +42,7 @@ public class StringUtilsTest {
 
 	@Test
 	public void testJoinIterable() {
-		Assert.assertEquals(StringUtils.toString(Arrays.asList("a", "b", "c")),
+		Assert.assertEquals(StringUtils.join(Arrays.asList("a", "b", "c")),
 				"abc");
 	}
 
@@ -54,7 +54,7 @@ public class StringUtilsTest {
 
 	@Test
 	public void testToString() {
-		Assert.assertEquals(StringUtils.toString(Arrays.asList('a', 'b', 'c')),
+		Assert.assertEquals(StringUtils.join(Arrays.asList('a', 'b', 'c')),
 				"abc");
 	}
 }

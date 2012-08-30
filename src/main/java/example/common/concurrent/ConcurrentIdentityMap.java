@@ -59,6 +59,11 @@ public class ConcurrentIdentityMap<E> {
 
 	/**
 	 * {@link java.util.Set#add(Object)}
+	 * 
+	 * @param e
+	 *            the element to add
+	 * @return {@code false} if this set did already contain the element
+	 *         {@code e}
 	 */
 	public boolean add(E e) {
 		elementsLock.readLock().lock();
@@ -82,6 +87,11 @@ public class ConcurrentIdentityMap<E> {
 		}
 	}
 
+	/**
+	 * Retruns the elements of the set.
+	 * 
+	 * @return the elements of the set
+	 */
 	public Collection<E> getElements() {
 		elementsLock.readLock().lock();
 		try {

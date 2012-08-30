@@ -34,11 +34,11 @@
 package example.common.concurrent;
 
 import java.util.Collection;
-import java.util.HashSet;
 import java.util.concurrent.ConcurrentHashMap;
 
 /**
- * A lock free implementation inspired by {@link HashSet} implementation
+ * A lock free implementation inspired by {@link java.util.HashSet}, without the
+ * clutter of the {@link java.util.Set} interface.
  * 
  * TODO benchmark against {@link ConcurrentIdentityMap}
  * 
@@ -52,10 +52,23 @@ public class ConcurrentHashSet<E> {
 		map = new ConcurrentHashMap<>();
 	}
 
+	/**
+	 * See {@link java.util.HashSet#add(Object)}.
+	 * 
+	 * @param e
+	 *            the element to add
+	 * @return {@code false} if this set did already contain the element
+	 *         {@code e}
+	 */
 	public boolean add(E e) {
 		return map.put(e, PRESENT) == null;
 	}
 
+	/**
+	 * Retruns the elements of the set.
+	 * 
+	 * @return the elements of the set
+	 */
 	public Collection<E> getElements() {
 		return map.keySet();
 	}
