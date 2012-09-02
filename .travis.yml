@@ -1,0 +1,11 @@
+language: java
+jdk:
+  - oraclejdk7
+  - openjdk7
+
+notifications:
+  email:
+    recipients
+      - mm.pub@gmx.de
+    on_success: always
+    on_failure: always

@@ -1,5 +1,8 @@
 common
 ======
+
+[![Build Status](https://secure.travis-ci.org/bogosort/common.png)](http://travis-ci.org/bogosort/common)
+
 Some common auxiliaries:
 
 *  concurrent
