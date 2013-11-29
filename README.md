@@ -24,8 +24,8 @@ add following to your _pom.xml_:
 	...
 	<repositories>
 		<repository>
-			<id>bogosort-releases</id>
-			<url>https://raw.github.com/bogosort/java-common/master/releases</url>
+			<id>schnittstabil-releases</id>
+			<url>https://raw.github.com/schnittstabil/java-common/master/releases</url>
 		</repository>
 	</repositories>
 	...

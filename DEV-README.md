@@ -7,7 +7,7 @@ Set up The Dev Environment
 ### GitHub
 
 1. [GitHub: Generating SSH Keys](https://help.github.com/articles/generating-ssh-keys)
-2. `git clone git@github.com:bogosort/java-common.git`
+2. `git clone git@github.com:schnittstabil/java-common.git`
 
 ### Eclipse
 
@@ -24,7 +24,7 @@ Set up The Dev Environment
 1. in Eclipse go to __File > Import... > Git > Projects from Git__
 2. Select Repository Source: __Clone URI__
 3. Source Git Repository:
-	* URI: `git@github.com:bogosort/java-common.git`
+	* URI: `git@github.com:schnittstabil/java-common.git`
 	* Protocol: `ssh`
 	* __User: `git`__
 	* __Password: (left blank)__
