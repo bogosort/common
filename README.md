@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/schnittstabil/java-common.png?branch=master)](https://travis-ci.org/schnittstabil/java-common)
+
 java-common
 ===========
 
