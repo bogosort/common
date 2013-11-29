@@ -5,7 +5,7 @@ jdk:
 
 notifications:
   email:
-    recipients
+    recipients:
       - michael@schnittstabil.de
     on_success: always
     on_failure: always
