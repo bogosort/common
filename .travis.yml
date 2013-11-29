@@ -6,6 +6,6 @@ jdk:
 notifications:
   email:
     recipients
-      - mm.pub@gmx.de
+      - michael@schnittstabil.de
     on_success: always
     on_failure: always

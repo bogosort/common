@@ -4,22 +4,22 @@
 <suite name="common" verbose="1">
 	<test name="concurrent">
 		<packages>
-			<package name="example.common.concurrent" />
+			<package name="de.schnittstabil.common.concurrent" />
 		</packages>
 	</test>
 	<test name="io">
 		<packages>
-			<package name="example.common.io" />
+			<package name="de.schnittstabil.common.io" />
 		</packages>
 	</test>
 	<test name="lang">
 		<packages>
-			<package name="example.common.lang" />
+			<package name="de.schnittstabil.common.lang" />
 		</packages>
 	</test>
 	<test name="util">
 		<packages>
-			<package name="example.common.util" />
+			<package name="de.schnittstabil.common.util" />
 		</packages>
 	</test>
 </suite>
