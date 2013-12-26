@@ -40,3 +40,7 @@ add following to your _pom.xml_:
 	</dependencies>
 	...
 
+
+
+[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/schnittstabil/java-common/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
+
